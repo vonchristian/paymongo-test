@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_02_18_080543) do
+ActiveRecord::Schema[8.0].define(version: 2025_02_18_081632) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -61,6 +61,14 @@ ActiveRecord::Schema[8.0].define(version: 2025_02_18_080543) do
     t.datetime "updated_at", null: false
     t.index ["name", "parking_lot_id"], name: "index_slot_types_on_name_and_parking_lot_id", unique: true
     t.index ["parking_lot_id"], name: "index_slot_types_on_parking_lot_id"
+  end
+
+  create_table "vehicles", force: :cascade do |t|
+    t.string "plate_number", null: false
+    t.string "vehicle_type", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["plate_number"], name: "index_vehicles_on_plate_number", unique: true
   end
 
   add_foreign_key "entry_points", "parking_lots"

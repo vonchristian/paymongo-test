@@ -67,3 +67,5 @@ group :test do
   gem "database_cleaner-active_record"
   gem "shoulda-matchers", "~> 6.0"
 end
+
+gem "money-rails", "~> 1.12"

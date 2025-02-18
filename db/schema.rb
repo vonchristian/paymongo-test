@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_02_18_075654) do
+ActiveRecord::Schema[8.0].define(version: 2025_02_18_080543) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -28,6 +28,16 @@ ActiveRecord::Schema[8.0].define(version: 2025_02_18_075654) do
     t.string "location", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "parking_rates", force: :cascade do |t|
+    t.bigint "slot_type_id", null: false
+    t.bigint "base_rate_cents", null: false
+    t.bigint "hourly_rate_cents", null: false
+    t.bigint "daily_rate_cents", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["slot_type_id"], name: "index_parking_rates_on_slot_type_id"
   end
 
   create_table "parking_slots", force: :cascade do |t|
@@ -54,6 +64,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_02_18_075654) do
   end
 
   add_foreign_key "entry_points", "parking_lots"
+  add_foreign_key "parking_rates", "slot_types"
   add_foreign_key "parking_slots", "entry_points"
   add_foreign_key "parking_slots", "parking_lots"
   add_foreign_key "parking_slots", "slot_types"

@@ -2,6 +2,7 @@ require 'rails_helper'
 
 RSpec.describe ParkingModule::SlotType, type: :model do
   describe "associations" do
+    it { is_expected.to have_many :parking_rates }
     it { is_expected.to belong_to :parking_lot }
   end
 

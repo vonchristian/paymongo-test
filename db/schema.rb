@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_02_18_075206) do
+ActiveRecord::Schema[8.0].define(version: 2025_02_18_075654) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -30,6 +30,20 @@ ActiveRecord::Schema[8.0].define(version: 2025_02_18_075206) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "parking_slots", force: :cascade do |t|
+    t.bigint "parking_lot_id", null: false
+    t.bigint "slot_type_id", null: false
+    t.jsonb "distances"
+    t.boolean "occupied", default: false
+    t.bigint "entry_point_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["entry_point_id"], name: "index_parking_slots_on_entry_point_id"
+    t.index ["occupied"], name: "index_parking_slots_on_occupied"
+    t.index ["parking_lot_id"], name: "index_parking_slots_on_parking_lot_id"
+    t.index ["slot_type_id"], name: "index_parking_slots_on_slot_type_id"
+  end
+
   create_table "slot_types", force: :cascade do |t|
     t.bigint "parking_lot_id", null: false
     t.string "name"
@@ -40,5 +54,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_02_18_075206) do
   end
 
   add_foreign_key "entry_points", "parking_lots"
+  add_foreign_key "parking_slots", "entry_points"
+  add_foreign_key "parking_slots", "parking_lots"
+  add_foreign_key "parking_slots", "slot_types"
   add_foreign_key "slot_types", "parking_lots"
 end

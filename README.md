@@ -40,6 +40,7 @@ Run the Rails server:
 bin/dev
 ```
 App will be available at: **http://localhost:3000**
+<img width="1393" alt="Screenshot 2025-02-22 at 11 29 12 AM" src="https://github.com/user-attachments/assets/e41419f5-e1ee-489d-8f00-8d61a0515387" />
 
 ### **3️⃣ Run Tests**
 Ensure everything is working by running:

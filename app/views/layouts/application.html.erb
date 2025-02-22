@@ -23,8 +23,12 @@
   </head>
 
   <body>
-    <main class="container mx-auto mt-28 px-5 flex">
-      <%= yield %>
+    <main class="container mx-auto px-5 flex">
+      <%= render "layouts/shared/header" %>
+      <%= render "layouts/shared/sidebar" %>
+      <div class="w-full pt-10 px-4 sm:px-6 md:px-8 lg:ps-72">
+        <%= yield %>
+      </div>
     </main>
   </body>
 </html>

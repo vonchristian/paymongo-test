@@ -1,0 +1,15 @@
+
+  <h1 class="text-2xl font-bold text-gray-900 mb-4">Parking Tickets</h1>
+
+  <!-- Form Container -->
+  <div id="form_container">
+    <%= render "form", parking_ticket: @parking_ticket %>
+  </div>
+
+  <!-- Turbo Frame for Ticket List -->
+  <turbo-frame id="parking_tickets">
+    <div class="space-y-5 mt-4">
+      <%= render partial: "parking_tickets/parking_ticket", collection: @parking_tickets, as: :parking_ticket %>
+    </div>
+  </turbo-frame>
+</div>

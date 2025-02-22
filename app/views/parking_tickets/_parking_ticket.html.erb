@@ -1,0 +1,25 @@
+<div id="parking_ticket_<%= parking_ticket.id %>">
+  <div>
+    <div class="p-4 bg-gray-50 rounded-lg grid grid-cols-12">
+      <div class="col-span-4">
+        <p class="text-lg font-medium text-gray-800">
+          Plate: <%= parking_ticket.plate_number %>
+          <span class="inline-flex items-center gap-x-1.5 py-1.5 px-3 rounded-full text-xs font-medium bg-gray-100 text-gray-800 dark:bg-white/10 dark:text-white"><%= parking_ticket.parking_slot.slot_type_name %></span>
+        </p>
+        <p class="text-sm text-gray-600">Entry Point: <%= parking_ticket.entry_point_name.capitalize %></p>
+        <p class="text-sm text-gray-600">Entry Time: <%= parking_ticket.entry_time.strftime("%b %d %I:%M %p") %></p>
+      </div>
+      <div class="col-span-4">
+        <p class="text-xl font-bold text-blue-600">Duration:<br>
+          <span data-controller="time_elapsed" data-time-elapsed-timestamp-value="<%= parking_ticket.entry_time.to_i %>">
+            <%= time_elapsed(parking_ticket.entry_time) %>
+          </span>
+        </p>
+      </div>
+      <div class="col-span-1">
+        <p class="text-xl font-bold text-gray-600">Fee:<br>
+        <span class=""><%= number_to_currency parking_ticket.calculate_fee.amount %></span>
+      </div>
+    </div>
+  </div>
+</div>

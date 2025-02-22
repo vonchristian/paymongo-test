@@ -1,0 +1,12 @@
+<% if @parking_ticket.errors.any? %>
+  <!-- Replace form with errors -->
+  <%= turbo_stream.replace "form_container", partial: "form", locals: { parking_ticket: @parking_ticket } %>
+<% else %>
+  <!-- Append new ticket -->
+  <%= turbo_stream.prepend "parking_tickets" do %>
+    <%= render partial: "parking_tickets/parking_ticket", locals: { parking_ticket: @parking_ticket.result } %>
+  <% end %>
+
+  <!-- Reset form -->
+  <%= turbo_stream.replace "form_container", partial: "form", locals: { parking_ticket: ParkingModule::ParkingService.new } %>
+<% end %>

@@ -69,3 +69,5 @@ group :test do
 end
 
 gem "money-rails", "~> 1.12"
+gem "active_interaction", "~> 5.5"
+gem "pry-rails"

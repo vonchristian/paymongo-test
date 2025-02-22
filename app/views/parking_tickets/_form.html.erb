@@ -1,0 +1,29 @@
+<%= form_with model: parking_ticket, url: parking_tickets_path, data: { turbo_frame: "parking_tickets" }, html: { class: "flex items-center space-x-4 bg-white p-4 rounded-lg" } do |f| %>
+  <!-- License Plate Input -->
+  <div class="flex flex-col">
+    <%= f.label :plate_number, "Plate Number", class: "block text-sm font-medium text-gray-700" %>
+    <%= f.text_field :plate_number, class: "w-40 px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-indigo-300" %>
+  </div>
+
+ <div class="flex flex-col">
+    <%= f.label :vehicle_type, "Vehicle Type", class: "block text-sm font-medium text-gray-700" %>
+    <%= f.select :vehicle_type,
+          ['small', 'medium', 'large'].map { |vehicle_type| [vehicle_type.capitalize, vehicle_type] },
+          { prompt: "Select" },
+          class: "w-40 px-3 py-2 border border-gray-300 rounded-md shadow-sm bg-white" %>
+  </div>
+
+  <!-- Entry Point Dropdown -->
+  <div class="flex flex-col">
+    <%= f.label :entry_point_id, "Entry Point", class: "block text-sm font-medium text-gray-700" %>
+    <%= f.select :entry_point_id,
+          ParkingModule::EntryPoint.all.map { |entry_point| [entry_point.name, entry_point.id] },
+          { prompt: "Select" },
+          class: "w-40 px-3 py-2 border border-gray-300 rounded-md shadow-sm bg-white" %>
+  </div>
+
+  <!-- Submit Button -->
+  <div>
+    <%= f.submit "Create Ticket", class: "mt-5 px-4 py-2 bg-indigo-600 text-white font-semibold rounded-md hover:bg-indigo-700 transition" %>
+  </div>
+<% end %>
